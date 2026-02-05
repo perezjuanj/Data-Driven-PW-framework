@@ -9,7 +9,8 @@ A scalable, maintainable test suite that leverages **data-driven techniques** to
 ✅ **Scalable Architecture**: Add new test cases by adding JSON entries  
 ✅ **Type-Safe**: Full TypeScript support  
 ✅ **Flexible Step Actions**: fill, click, type, select, check, uncheck, hover, wait  
-✅ **Multiple Expectation Types**: url, text, visible, hidden, attribute, count  
+✅ **Multiple Expectation Types**: url, text, notText, visible, hidden, attribute, count  
+✅ **Environment Variable Interpolation**: `${VAR}` in URLs/selectors/values via `.env`  
 ✅ **Easy Maintenance**: Centralized test data in JSON files  
 
 ## Project Structure
@@ -45,6 +46,9 @@ A scalable, maintainable test suite that leverages **data-driven techniques** to
    ```bash
    npx playwright install
    ```
+
+3. **Create `.env`**
+   This project loads environment variables from `.env` at runtime. Add any values you want to reference in your test JSON using `${VAR}` syntax.
 
 ## Usage
 
@@ -117,12 +121,13 @@ Test scenarios are defined in `tests/data/testScenarios.json`. Each scenario inc
           "action": "fill|click|type|select|check|uncheck|hover|wait",
           "selector": "CSS selector",
           "value": "value (optional)",
-          "delay": "delay in ms (optional)"
+          "delay": "delay in ms (optional)",
+          "skipIfHasClass": "CSS class name (optional, click only)"
         }
       ],
       "expectations": [
         {
-          "type": "url|text|visible|hidden|attribute|count",
+          "type": "url|text|notText|visible|hidden|attribute|count",
           "selector": "CSS selector (optional)",
           "value": "expected value",
           "attribute": "attribute name (for attribute type)"
@@ -189,12 +194,16 @@ To add a new test case:
 | `hover` | Hover over element | No |
 | `wait` | Wait for milliseconds | Yes |
 
+Optional per-step field:
+`skipIfHasClass` (click only): If the target element already has this class, the click is skipped.
+
 ### Expectation Types Reference
 
 | Type | Description | Requires Selector |
 |------|-------------|-----------------|
 | `url` | Verify current page URL | No |
 | `text` | Verify element contains text | Yes |
+| `notText` | Verify element does not contain text | Yes |
 | `visible` | Verify element is visible | Yes |
 | `hidden` | Verify element is hidden | Yes |
 | `attribute` | Verify element attribute value | Yes |
@@ -208,6 +217,7 @@ Current expectation types map to Playwright auto-retrying assertions:
 |------------------|----------------------|
 | `url` | `await expect(page).toHaveURL(...)` |
 | `text` | `await expect(locator).toContainText(...)` |
+| `notText` | `await expect(locator).not.toContainText(...)` |
 | `visible` | `await expect(locator).toBeVisible()` |
 | `hidden` | `await expect(locator).toBeHidden()` |
 | `attribute` | `await expect(locator).toHaveAttribute(...)` |
@@ -285,6 +295,22 @@ await TestExecutor.validateExpectation(page, {
 });
 ```
 
+### Environment Variable Interpolation
+
+You can reference `.env` values in URLs, selectors, step values, and expectations:
+
+```json
+{
+  "url": "${BASE_URL}/login",
+  "steps": [
+    { "action": "fill", "selector": "#username", "value": "${USERNAME}" }
+  ],
+  "expectations": [
+    { "type": "text", "selector": ".welcome", "value": "${WELCOME_TEXT}" }
+  ]
+}
+```
+
 ## Architecture Benefits
 
 ### Scalability
@@ -326,6 +352,23 @@ await TestExecutor.validateExpectation(page, {
 - Verify file path in `DataLoader.loadScenarios()`
 
 ## Configuration
+
+### `.env` Settings
+
+These environment variables are read by `playwright.config.ts` (and `tests/utils/dataLoader.ts`) to control runtime behavior:
+
+| Variable | Example | Purpose |
+|----------|---------|---------|
+| `SELECTOR_TIMEOUT` | `30000` | Timeout (ms) for actions/expectations/navigation |
+| `SCRIPT_TIMEOUT` | `30000` | Overall test timeout (ms) |
+| `HEADLESS` | `true` | Run browsers headless (`true`/`false`) |
+| `DEVTOOLS` | `false` | Reserved for opening DevTools (currently not wired) |
+| `BROWSER` | `chromium` | Browser project: `chromium` \| `firefox` \| `webkit` \| `all` |
+| `PARALLEL` | `3` | Worker count (leave empty for Playwright default) |
+| `RETRY` | `0` | Retries for failed tests |
+| `SLOWMO` | `0` | Slow motion delay (ms) |
+
+### Playwright Config
 
 Edit `playwright.config.ts` to customize:
 - Base URL for tests
