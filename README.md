@@ -104,6 +104,22 @@ Run tests with UI:
 npm run test:ui
 ```
 
+### GitHub Actions + Reports
+
+This repo includes a workflow that runs Playwright on pushes/PRs to `main` and publishes the HTML report to GitHub Pages.
+
+1. Enable GitHub Pages for this repo:
+   - Settings → Pages
+   - Source: GitHub Actions
+2. After a workflow run, the report will be available at:
+   ```text
+   https://<OWNER>.github.io/<REPO>/
+   ```
+   Example:
+   ```text
+   https://perezjuanj.github.io/Data-Driven-PW-framework/
+   ```
+
 ### Test Data Structure
 
 Test scenarios are defined in `tests/data/testScenarios.json`. Each scenario includes:
