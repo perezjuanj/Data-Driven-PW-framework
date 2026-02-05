@@ -71,7 +71,7 @@
       "expectations": [
         {
           "type": "visible",
-          "selector": "div.flex:has(h2:has-text('To Do')) .bg-white.p-4:has-text('Fix navigation Bug')"
+          "selector": "div.flex:has(h2:has-text('To Do')) .bg-white.p-4:has-text('Fix navigation bug')"
         },
         {
           "type": "text",
