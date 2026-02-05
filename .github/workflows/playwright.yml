@@ -45,7 +45,7 @@ jobs:
           DEMO_APP_EMAIL: ${{ secrets.DEMO_APP_EMAIL }}
           DEMO_APP_PASSWORD: ${{ secrets.DEMO_APP_PASSWORD }}
         run: |
-          cat > .env <<'EOF'
+          cat > .env <<EOF
           DEMO_APP_URL=${DEMO_APP_URL}
           DEMO_APP_EMAIL=${DEMO_APP_EMAIL}
           DEMO_APP_PASSWORD=${DEMO_APP_PASSWORD}
