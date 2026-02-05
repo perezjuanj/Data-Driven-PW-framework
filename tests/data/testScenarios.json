@@ -1,0 +1,237 @@
+{
+  "testScenarios": [
+    {
+      "id": "web_app_implement_auth",
+      "name": "Web Application - Verify Implement User Authentication in To Do",
+      "url": "${DEMO_APP_URL}",
+      "tags": ["smoke", "regression", "auth"],
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "${DEMO_APP_EMAIL}"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "${DEMO_APP_PASSWORD}"
+        },
+        {
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "action": "click",
+          "selector": "a:has-text('Web Application'), button:has-text('Web Application'), div:has-text('Web Application')",
+          "skipIfHasClass": "bg-gray-700"
+        }
+      ],
+      "expectations": [
+        {
+          "type": "visible",
+          "selector": "div.flex:has(h2:has-text('To Do')) .bg-white.p-4:has-text('Implement user authentication')"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('To Do')) div:has-text('Implement user authentication') .rounded-full",
+          "value": "Feature"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('To Do')) div:has-text('Implement user authentication') .rounded-full",
+          "value": "High Priority"
+        }
+      ]
+    },
+    {
+      "id": "web_app_nav_bug",
+      "name": "Web Application - Verify Fix navigation bug",
+      "url": "${DEMO_APP_URL}",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "${DEMO_APP_EMAIL}"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "${DEMO_APP_PASSWORD}"
+        },
+        {
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "action": "click",
+          "selector": "a:has-text('Web Application'), button:has-text('Web Application'), div:has-text('Web Application')",
+          "skipIfHasClass": "bg-gray-700"
+        }
+      ],
+      "expectations": [
+        {
+          "type": "visible",
+          "selector": "div.flex:has(h2:has-text('To Do')) .bg-white.p-4:has-text('Fix navigation Bug')"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('To Do')) div:has(> h3:has-text('Fix navigation bug')) .rounded-full",
+          "value": "Bug"
+        }
+      ]
+    },
+    {
+      "id": "web_app_design_updates",
+      "name": "Web Application - Design system updates",
+      "url": "${DEMO_APP_URL}",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "${DEMO_APP_EMAIL}"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "${DEMO_APP_PASSWORD}"
+        },
+        {
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "action": "click",
+          "selector": "a:has-text('Web Application'), button:has-text('Web Application'), div:has-text('Web Application')",
+          "skipIfHasClass": "bg-gray-700"
+        }
+      ],
+      "expectations": [
+        {
+          "type": "visible",
+          "selector": "div.flex:has(h2:has-text('In Progress')) .bg-white.p-4:has-text('Design system updates')"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('In Progress')) div:has(> h3:has-text('Design system updates')) .rounded-full",
+          "value": "Design"
+        }
+      ]
+    },
+    {
+      "id": "mobile_app_push_notifications",
+      "name": "Mobile Application - Push Notifications",
+      "url": "${DEMO_APP_URL}",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "${DEMO_APP_EMAIL}"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "${DEMO_APP_PASSWORD}"
+        },
+        {
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text('Mobile Application')",
+          "skipIfHasClass": "bg-gray-700"
+        }
+      ],
+      "expectations": [
+        {
+          "type": "visible",
+          "selector": "div.flex:has(h2:has-text('To Do')) .bg-white.p-4:has-text('Push notification system')"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('To Do')) div:has(> h3:has-text('Push notification system')) .rounded-full",
+          "value": "Feature"
+        }
+      ]
+    },
+    {
+      "id": "mobile_app_offline_mode",
+      "name": "Mobile Application - Offline Mode",
+      "url": "${DEMO_APP_URL}",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "${DEMO_APP_EMAIL}"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "${DEMO_APP_PASSWORD}"
+        },
+        {
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text('Mobile Application')",
+          "skipIfHasClass": "bg-gray-700"
+        }
+      ],
+      "expectations": [
+        {
+          "type": "visible",
+          "selector": "div.flex:has(h2:has-text('In Progress')) .bg-white.p-4:has-text('Offline mode')"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('In Progress')) div:has(> h3:has-text('Offline mode')) .rounded-full",
+          "value": "Feature"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('In Progress')) div:has(> h3:has-text('Offline mode')) .rounded-full",
+          "value": "High Priority"
+        }
+      ]
+    },
+    {
+      "id": "mobile_app_app_icon",
+      "name": "Mobile Application - App Icon Design",
+      "url": "${DEMO_APP_URL}",
+      "steps": [
+        {
+          "action": "fill",
+          "selector": "#username",
+          "value": "${DEMO_APP_EMAIL}"
+        },
+        {
+          "action": "fill",
+          "selector": "#password",
+          "value": "${DEMO_APP_PASSWORD}"
+        },
+        {
+          "action": "click",
+          "selector": "button[type='submit']"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text('Mobile Application')",
+          "skipIfHasClass": "bg-gray-700"
+        }
+      ],
+      "expectations": [
+        {
+          "type": "visible",
+          "selector": "div.flex:has(h2:has-text('Done')) .bg-white.p-4:has-text('App icon design')"
+        },
+        {
+          "type": "text",
+          "selector": "div.flex.flex-col.w-80.bg-gray-50.rounded-lg.p-4:has(h2:has-text('Done')) div:has(> h3:has-text('App icon design')) .rounded-full",
+          "value": "Design"
+        }
+      ]
+    }
+  ]
+}

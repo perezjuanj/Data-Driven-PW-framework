@@ -1,0 +1,23 @@
+{
+  "name": "playwright-data-driven-tests",
+  "version": "1.0.0",
+  "description": "A Playwright-driven test suite with data-driven techniques using JSON test scenarios",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "test:id": "node ./tests/utils/runById.js",
+    "test:tag": "node ./tests/utils/runByTag.js",
+    "test:name": "node ./tests/utils/runByName.js",
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^22.10.5",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.7.3"
+  }
+}
