@@ -39,6 +39,26 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Create .env for CI
+        env:
+          DEMO_APP_URL: ${{ secrets.DEMO_APP_URL }}
+          DEMO_APP_EMAIL: ${{ secrets.DEMO_APP_EMAIL }}
+          DEMO_APP_PASSWORD: ${{ secrets.DEMO_APP_PASSWORD }}
+        run: |
+          cat > .env <<'EOF'
+          DEMO_APP_URL=${DEMO_APP_URL}
+          DEMO_APP_EMAIL=${DEMO_APP_EMAIL}
+          DEMO_APP_PASSWORD=${DEMO_APP_PASSWORD}
+          SCRIPT_TIMEOUT=30000
+          SELECTOR_TIMEOUT=30000
+          HEADLESS=true
+          DEVTOOLS=false
+          BROWSER=chromium
+          PARALLEL=1
+          RETRY=0
+          SLOWMO=0
+          EOF
+
       - name: Run tests
         run: npm test
         env:
