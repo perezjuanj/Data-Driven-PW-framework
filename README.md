@@ -108,10 +108,7 @@ npm run test:ui
 
 This repo includes a workflow that runs Playwright on pushes/PRs to `main` and publishes the HTML report to GitHub Pages.
 
-1. Enable GitHub Pages for this repo:
-   - Settings → Pages
-   - Source: GitHub Actions
-2. After a workflow run, the report will be available at:
+1. After a workflow run, the report will be available at:
    ```text
    https://<OWNER>.github.io/<REPO>/
    ```
@@ -384,14 +381,6 @@ These environment variables are read by `playwright.config.ts` (and `tests/utils
 | `RETRY` | `0` | Retries for failed tests |
 | `SLOWMO` | `0` | Slow motion delay (ms) |
 
-### Playwright Config
-
-Edit `playwright.config.ts` to customize:
-- Base URL for tests
-- Browser devices (Chrome, Firefox, Safari)
-- Retry logic and parallelization
-- Trace/screenshot options
-- Reporter output
 
 ## Dependencies
 

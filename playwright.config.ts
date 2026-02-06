@@ -28,7 +28,7 @@ export default defineConfig({
   workers: PARALLEL,
   reporter: [['html', { open: 'never' }]],
   use: {
-    baseURL: process.env.DEMO_APP_URL || 'https://example.com',
+    baseURL: process.env.DEMO_APP_URL,
     headless: HEADLESS,
     actionTimeout: SELECTOR_TIMEOUT,
     navigationTimeout: SELECTOR_TIMEOUT,
