@@ -145,17 +145,11 @@ export class TestExecutor {
                 if (!value) throw new Error('Missing value for text expectation');
 
                 const base = page.locator(selector);
-
-                // Narrow to elements that contain the expected text
                 const match = base.filter({ hasText: value });
-
-                // Assert at least one exists (avoids strict-mode "3 elements" issue)
                 await expect(
                     match,
                     `Expect the following selector to contain "${value}": "${selector}"`
                 ).toHaveCount(1);
-
-                // Optional: if you actually want to ensure the matching one is visible:
                 await expect(match.first()).toBeVisible();
 
                 break;
